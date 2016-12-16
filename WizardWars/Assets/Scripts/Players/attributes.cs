@@ -4,38 +4,42 @@ using UnityEngine;
 
 public class attributes : MonoBehaviour {
 
-    private int maxLife;
-    private int curLife;
-    private int numberOfProj;
+    //*********FLAT VALUES*********
+    private int maxLife = 100;
+    private int curLife = 100;
+    private int numberOfProj = 1;
+
+    //*****************************
 
     //**********% VALUES***********
-    private int incFireDmg;
-    private int incFireAoE;
-    private int incFireDur;
-    private int incFireProjSpeed;
+    private float incFireDmg = 0;
+    private float incFireAoE = 0;
+    private float incFireDur = 0;
+    private float incFireProjSpeed = 0;
 
-    private int incLightDmg;
-    private int incLightAoE;
-    private int incLightDur;
-    private int incLightProjSpeed;
+    private float incLightDmg = 0;
+    private float incLightAoE = 0;
+    private float incLightDur = 0;
+    private float incLightProjSpeed = 0;
 
-    private int incWaterDmg;
-    private int incWaterAoE;
-    private int incWaterDur;
-    private int incWaterProjSpeed;
+    private float incWaterDmg = 0;
+    private float incWaterAoE = 0;
+    private float incWaterDur = 0;
+    private float incWaterProjSpeed = 0;
 
-    private int incGravityDmg;
-    private int incGravityAoE;
-    private int incGravityDur;
-    private int incGravityProjSpeed;
+    private float incGravityDmg = 0;
+    private float incGravityAoE = 0;
+    private float incGravityDur = 0;
+    private float incGravityProjSpeed = 0;
 
-    private int chancetoFreeze;
-    private int knockbackRes;
-    private int cooldownRed;
-    private int incMoveSpeed;
+    private float chancetoFreeze = 0;
+    private float knockbackRes = 0;
+    private float cooldownRed = 0;
+    private float incMoveSpeed = 0;
+    private float damageRed = 0;
     //******************************
 
-    public int this[string i]
+    public float this[string i]
     {
         get
         {
@@ -97,73 +101,73 @@ public class attributes : MonoBehaviour {
             switch (i)
             {
                 case "maxLife":
-                    maxLife = value;
+                    maxLife = (int) minimumValue(value, 100);
                     break;
                 case "curLife":
-                    curLife = value;
+                    curLife = (int) minimumValue(value, 0);
                     break;
                 case "numberOfProj":
-                    numberOfProj = value;
+                    numberOfProj = (int)minimumValue(value, 1); ;
                     break;
                 case "incFireDmg":
-                    incFireDmg = value;
+                    incFireDmg = minimumValue(value, -1);;
                     break;
                 case "incFireAoE":
-                    incFireAoE = value;
+                    incFireAoE = minimumValue(value, -1);;
                     break;
                 case "incFireDur":
-                    incFireDur = value;
+                    incFireDur = minimumValue(value, -1);;
                     break;
                 case "incFireProjSpeed":
-                    incFireProjSpeed = value;
+                    incFireProjSpeed = minimumValue(value, -1);;
                     break;
                 case "incLightDmg":
-                    incLightDmg = value;
+                    incLightDmg = minimumValue(value, -1);;
                     break;
                 case "incLightAoE":
-                    incLightAoE = value;
+                    incLightAoE = minimumValue(value, -1);;
                     break;
                 case "incLightDur":
-                    incLightDur = value;
+                    incLightDur = minimumValue(value, -1);;
                     break;
                 case "incLightProjSpeed":
-                    incLightProjSpeed = value;
+                    incLightProjSpeed = minimumValue(value, -1);;
                     break;
                 case "incWaterDmg":
-                    incWaterDmg = value;
+                    incWaterDmg = minimumValue(value, -1);;
                     break;
                 case "incWaterAoE":
-                    incWaterAoE = value;
+                    incWaterAoE = minimumValue(value, -1);;
                     break;
                 case "incWaterDur":
-                    incWaterDur = value;
+                    incWaterDur = minimumValue(value, -1);;
                     break;
                 case "incWaterProjSpeed":
-                    incWaterProjSpeed = value;
+                    incWaterProjSpeed = minimumValue(value, -1);;
                     break;
                 case "incGravityDmg":
-                    incGravityDmg = value;
+                    incGravityDmg = minimumValue(value, -1);;
                     break;
                 case "incGravityAoE":
-                    incGravityAoE = value;
+                    incGravityAoE = minimumValue(value, -1);;
                     break;
                 case "incGravityDur":
-                    incGravityDur = value;
+                    incGravityDur = minimumValue(value, -1);;
                     break;
                 case "incGravityProjSpeed":
-                    incGravityProjSpeed = value;
+                    incGravityProjSpeed = minimumValue(value, -1);;
                     break;
                 case "chanceToFreeze":
-                    chancetoFreeze = value;
+                    chancetoFreeze = minimumValue(value, -1);;
                     break;
                 case "knockbackRes":
-                    knockbackRes = value;
+                    knockbackRes = minimumValue(value, -1);;
                     break;
                 case "cooldownRed":
-                    cooldownRed = value;
+                    cooldownRed = minimumValue(value, -1);;
                     break;
                 case "incMoveSpeed":
-                    incMoveSpeed = value;
+                    incMoveSpeed = minimumValue(value, -1);
                     break;
                 default:
                     //not a valid attribute
@@ -171,6 +175,11 @@ public class attributes : MonoBehaviour {
             }
         }
     }
+
+    float minimumValue(float value, float min) {
+        return value >= min ? value : min;
+    }
+
 
     // Use this for initialization
     void Start () {
