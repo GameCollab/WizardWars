@@ -5,6 +5,6 @@ using UnityEngine;
 //For Cards, but might be used for other things
 public interface ISpellmaker
 {
-    void MakeSpell(); //Return a Spell, Parameter Card
+    Spell MakeSpell(Card c);
 }
 
