@@ -8,7 +8,8 @@ public static class Constants
     {
         DEFAULT,
         ABILITY,
-        SUPPORT
+        SUPPORT,
+        NONE
     } 
 
    public enum CardClass
@@ -31,7 +32,10 @@ public static class Constants
 
     public enum Tag
     {
-        DEFAULT
+        DEFAULT,
+        FIRE,
+        PROJECTILE,
+        AOE
     }
 
     public enum SpellType
@@ -39,7 +43,8 @@ public static class Constants
         DEFAULT,
         ACTIVE,
         STATIC,
-        CONTINUOUS
+        CONTINUOUS,
+        PERSISTENT
     }
 
     public enum SpellTarget
@@ -61,4 +66,12 @@ public static class Constants
         RECTANGLE,
         NOVA
     }
+
+
+
+
+
+
+    /* Fireball Spell Values */
+
 }

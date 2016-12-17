@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Explode : MonoBehaviour {
+public class CardVisualizer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
