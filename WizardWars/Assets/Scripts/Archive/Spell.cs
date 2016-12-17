@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public abstract class Spell : MonoBehaviour {
     public string _name;
     public uint _id;
@@ -26,6 +26,8 @@ public abstract class Spell : MonoBehaviour {
     public Constants.SpellCast _cast;
     public int _castValue;
 
+    public bool _isProjectilBased;
+
     //Visuals, Sounds, Physics
 
 
@@ -45,3 +47,4 @@ public abstract class Spell : MonoBehaviour {
 
     public abstract void UndoEffects();
 }
+*/

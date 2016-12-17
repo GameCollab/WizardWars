@@ -2,7 +2,7 @@
 using UnityEngine;
 
 //For things that can be damaged
-public interface IDamagable<T>
+public interface IDamageable<T>
 {
     void TakeDamage(T damage);
     void Die();
