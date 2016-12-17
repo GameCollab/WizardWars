@@ -3,8 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 /* Store Card Data */
-/* Has Spell Effects */
-public abstract class Card : IComparable<Card>
+public class Card : MonoBehaviour, IComparable<Card>
 {
     /* Card General Data */
     public string _name;
@@ -34,7 +33,8 @@ public abstract class Card : IComparable<Card>
 
     public Constants.Tag[] _tags;
 
-
+    public GameObject _behavior;
+    /*
     public Card(string name, uint id, string description, Constants.CardType type, Constants.CardClass cl, Constants.CardRarity rarity, Constants.SpellType spellType, Constants.SpellTarget target, Constants.SpellCast cast, int castValue, float damage, float knockback, float duration, float channel, float range, float castRange, float missileSpeed, float cooldown, Constants.Tag[] tags)
     {
         _name = name;
@@ -56,7 +56,7 @@ public abstract class Card : IComparable<Card>
         _missileSpeed = missileSpeed;
         _cooldown = cooldown;
         _tags = tags;
-}
+    }*/
 
     public string toString()
     {
@@ -67,8 +67,5 @@ public abstract class Card : IComparable<Card>
     {
         return _id.CompareTo(other._id);
     }
-
-    public abstract void CastSpell(GameObject user, GameObject target);
-    public abstract bool UndoEffects(GameObject target);
 
 }

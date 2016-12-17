@@ -69,6 +69,11 @@ public static class Constants
         NOVA
     }
 
+    public enum BehaviorType
+    {
+
+    }
+
 
     /* Fireball Spell Values */
     public const string FIREBALL_NAME = "Fireball";
