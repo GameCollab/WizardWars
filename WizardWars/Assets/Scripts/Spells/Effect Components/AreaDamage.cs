@@ -22,12 +22,14 @@ public class AreaDamage : Damage {
 
         if (_isPersistent && !_donePersist && !_runPersist)
         {
+            Debug.Log("Do Continuous");
             _timer = 0f;
             _runPersist = true;
             StartCoroutine(DealContinuousDamage());
         }
         else if (!_isPersistent && !_doneDiscrete)
         {
+            Debug.Log("Do Discrete");
             DealDamage();
         }
     }
@@ -39,6 +41,7 @@ public class AreaDamage : Damage {
             // Get player info via targetNumber
             // Run Player's take damage function
             List<GameObject> targets = Utilities.Effects.GetAllOfTypeInCast(_area, _castPoint, _areaSize, _secondaryAreaValue, Utilities.EnumUtil.GetStringTag(_type));
+            Debug.Log("List length: " + targets.Count);
             foreach (var target in targets)
             {
                 ApplyDamage(target);
@@ -56,7 +59,8 @@ public class AreaDamage : Damage {
     public override void DealDamage()
     {
         List<GameObject> targets = Utilities.Effects.GetAllOfTypeInCast(_area, _castPoint, _areaSize, _secondaryAreaValue, Utilities.EnumUtil.GetStringTag(_type));
-        foreach(var target in targets)
+        Debug.Log("List length: " + targets.Count);
+        foreach (var target in targets)
         {
             ApplyDamage(target);
         }

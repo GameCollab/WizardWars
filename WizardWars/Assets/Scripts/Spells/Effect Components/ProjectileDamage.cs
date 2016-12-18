@@ -21,10 +21,10 @@ public class ProjectileDamage : Damage {
 	
 	void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Got collision");
-        if (Utilities.Effects.IsValidTarget(other.gameObject, _targetNumber, _type, _isTargeted))
+        if (!this.enabled) return;
+        if(Utilities.Effects.IsValidTarget(other.gameObject, _targetNumber, _type, _isTargeted))
         {
-            if (!_doneDiscrete)
+            if(!_doneDiscrete)
             {
                 _validTarget = other.gameObject;
                 DealDamage();
