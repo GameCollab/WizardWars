@@ -37,7 +37,7 @@ public class DirectDamage : Damage {
         // Get player info via targetNumber
         // Run Player's take damage function
         //GameObject target = new GameObject();
-        GameObject target = gameObject.GetComponent<TestEffectController>()._manager.GetComponent<TestManager>()._players[_targetNumber];
+        GameObject target = Utilities.Misc.GetPlayerByNumber(_targetNumber);
         ApplyDamage(target);
 
         _doneDiscrete = true;
@@ -45,13 +45,13 @@ public class DirectDamage : Damage {
 
     public override IEnumerator DealContinuousDamage()
     {
-        while (!Utilities.Effects.IsTimerDone(_timer, _duration))
+        while (!Utilities.Misc.IsTimerDone(_timer, _duration))
         {
             Debug.Log("DIRECT DAMAGE: Timer is Not Done.");
             Debug.Log("DIRECT DAMAGE: Timer: " + _timer);
             // Get player info via targetNumber
             // Run Player's take damage function
-            GameObject target = gameObject.GetComponent<TestEffectController>()._manager.GetComponent<TestManager>()._players[_targetNumber];
+            GameObject target = Utilities.Misc.GetPlayerByNumber(_targetNumber);
             ApplyDamage(target);
             _timer += 1f;
             _damage += _damageChange;

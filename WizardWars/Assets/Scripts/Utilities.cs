@@ -22,12 +22,36 @@ namespace Utilities
         }
     }
 
-    public static class Effects
+    public static class Misc
     {
         public static bool IsTimerDone(float timer, float duration)
         {
-            return timer > duration;
+            return timer >= duration;
         }
+
+        public static GameObject GetPlayerByNumber(int number)
+        {
+            Debug.Log("Number: " + number);
+            return TestManager._manager._players[number];
+        }
+    }
+
+    public static class Interfaces
+    {
+        public static IDamageable GetDamageable(GameObject obj)
+        {
+            return obj.GetComponent(typeof(IDamageable)) as IDamageable;
+        }
+
+        public static IHealable GetHealable(GameObject obj)
+        {
+            return obj.GetComponent(typeof(IHealable)) as IHealable;
+        }
+    }
+
+    public static class Effects
+    {
+
 
         public static bool IsValidTarget(GameObject other, int targetNumber, Enums.Spells.Target type, bool targeted)
         {
@@ -50,8 +74,8 @@ namespace Utilities
         {
             switch (type)
             {
-                case Enums.Spells.Target.ANY: return other.CompareTag("Player");
-                case Enums.Spells.Target.NOT_SELF: return other.CompareTag("Player");//&& other.GetComponent<Player...>().getNumber()... != _casterNumber;
+                case Enums.Spells.Target.ANY: return other.CompareTag(Constants.Tags.PLAYER_TAG);
+                case Enums.Spells.Target.NOT_SELF: return other.CompareTag(Constants.Tags.PLAYER_TAG);//&& other.GetComponent<Player...>().getNumber()... != _casterNumber;
                 case Enums.Spells.Target.SELF: return true; //return other.GetComponent<Player...>().getNumber()... == _casterNumber;
                 default:
                     Debug.Log("Bad Target Type!");

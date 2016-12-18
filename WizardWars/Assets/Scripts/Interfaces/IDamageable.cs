@@ -2,9 +2,9 @@
 using UnityEngine;
 
 //For things that can be damaged
-public interface IDamageable<T>
+public interface IDamageable
 {
-    void TakeDamage(T damage);
+    void TakeDamage(float damage);
     void Die();
 }
 

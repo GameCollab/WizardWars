@@ -8,10 +8,12 @@ public class TestEffectController : MonoBehaviour {
     public DirectDamage _directdamage;
     public ProjectileDamage _projectiledamage;
     public AreaDamage _areadamage;
+    public DirectHeal _directheal;
 
     public bool _testDirectDamage;
     public bool _testProjectileDamage;
     public bool _testAreaDamage;
+    public bool _testDirectHeal;
 	// Use this for initialization
 	void Start () {
         if (_testDirectDamage)
@@ -28,6 +30,10 @@ public class TestEffectController : MonoBehaviour {
         {
             Debug.Log("Test Effect Controller: Setting Area Damage Active");
             _areadamage.enabled = true;
+        }
+        else if (_testDirectHeal)
+        {
+            _directheal.enabled = true;
         }
 	}
 

@@ -36,7 +36,7 @@ public class AreaDamage : Damage {
 
     public override IEnumerator DealContinuousDamage()
     {
-        while (!Utilities.Effects.IsTimerDone(_timer, _duration))
+        while (!Utilities.Misc.IsTimerDone(_timer, _duration))
         {
             // Get player info via targetNumber
             // Run Player's take damage function

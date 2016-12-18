@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestDamageable : MonoBehaviour, IDamageable<float> {
+public class TestDamageable : MonoBehaviour, IDamageable, IHealable {
     public float _health;
     public bool _isDead;
 
@@ -39,6 +39,17 @@ public class TestDamageable : MonoBehaviour, IDamageable<float> {
                 Debug.Log("Uh oh! Out of Health!");
                 _isDead = true;
             }
+        }
+    }
+
+    public void Heal(float amount)
+    {
+        if(!_isDead && _health > 0 && amount > 0)
+        {
+            Debug.Log("Old Health: " + _health);
+            Debug.Log("Health Restored: " + amount);
+            _health += amount;
+            Debug.Log("New Health: " + _health);
         }
     }
 }

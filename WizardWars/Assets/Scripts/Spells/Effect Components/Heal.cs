@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/* Generic Damage Effect */
-public abstract class Damage : MonoBehaviour
+public abstract class Heal : MonoBehaviour
 {
-    public float _damage = 0f;
-    public float _damageChange = 0f;
-    public Enums.Spells.Target _type = Enums.Spells.Target.NONE;
+    public float _restore;
+    public float _restoreChange;
+    public Enums.Spells.Target _type;
 
-    public float _duration = 0f;
-    public float _timer = 0f;
+    public float _duration;
+    public float _timer;
 
     public bool _isProjectile = false;
-    public bool _isTargeted = false; 
+    public bool _isTargeted = false;
     public bool _isPersistent = false;  //If this is false, don't bother with duration, timer, donePersist, runPersist
 
     public bool _doneDiscrete = false;
@@ -24,24 +23,21 @@ public abstract class Damage : MonoBehaviour
     public int _casterNumber = 0;
 
     /* Abstract Discrete Deal Damage */
-    public abstract void DealDamage();
+    public abstract void RestoreHealth();
 
     /* Abstract Continuous Deal Damage */
-    public abstract IEnumerator DealContinuousDamage();
+    public abstract IEnumerator RegenerateHealth();
 
     public abstract bool Done();
 
     public abstract void Initialize();
 
-    protected void ApplyDamage(GameObject player)
+    protected void ApplyHeal(GameObject player)
     {
-        IDamageable dmg = Utilities.Interfaces.GetDamageable(player);
-        if(dmg != null)
+        IHealable heal = Utilities.Interfaces.GetHealable(player);
+        if (heal != null)
         {
-            dmg.TakeDamage(_damage);
+            heal.Heal(_restore);
         }
     }
-
-
-
 }
