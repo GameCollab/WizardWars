@@ -50,6 +50,7 @@ public class NetworkManagerPUNTest : Photon.MonoBehaviour {
                 }
                 break;
             case 1:
+                //if connect to the server success,
                 GUI.Label(new Rect(10, 10, 100, 30), "Connected");
                 if(GUI.Button(new Rect(10,40,150,30), "Searching Server..."))
                 {
@@ -58,6 +59,14 @@ public class NetworkManagerPUNTest : Photon.MonoBehaviour {
                 }
                 break;
             case 2:
+                //Waiting till the room full
+                GUI.Label(new Rect(10, 10,400,30), "Waiting for player, currenlty in room: "+ PhotonNetwork.playerList.Length);
+                if (PhotonNetwork.playerList.Length == 2 & PhotonNetwork.isMasterClient == true)
+                {
+                    this.GetComponent<PhotonView>().RPC("StartGame", PhotonTargets.All);
+                }
+                break;
+            case 3:
                 //Select Character
                 GUI.Label(new Rect(10, 10, 100, 30), "Select Character");
                 if (GUI.Button(new Rect(10, 40, 100, 30), "Wizzard 101"))
@@ -65,7 +74,7 @@ public class NetworkManagerPUNTest : Photon.MonoBehaviour {
                     Spawn(0, "TestPlayer");
                 }
                 break;
-            case 3:
+            case 4:
                 //go to ingame
                 break;
         }
@@ -77,7 +86,7 @@ public class NetworkManagerPUNTest : Photon.MonoBehaviour {
      */
     void Spawn(int team, string characterName)
     {
-        state = 3;
+        state = 4;
         Debug.Log("Spawning... " + characterName);
 
         //if(team different) do different spawn point
@@ -86,9 +95,15 @@ public class NetworkManagerPUNTest : Photon.MonoBehaviour {
         GameObject testPlayer = PhotonNetwork.Instantiate(characterName, spawnPos.transform.position, spawnPos.transform.rotation, 0);
 
         //enable anything that the player can control here: player script etc
-        //testPlayer.GetComponent<CharacterController>().enabled = true; //only us(who join the lobby) can control the character, not other player in the network
+        testPlayer.GetComponent<CharacterController>().enabled = true; //only us(who join the lobby) can control the character, not other player in the network
         //testPlayer.GetComponent<CharacterController>().enabled = true;
 
         Debug.Log(characterName + " has been spawned!");
+    }
+
+    [PunRPC]
+    public void StartGame()
+    {
+        state = 3;
     }
 }

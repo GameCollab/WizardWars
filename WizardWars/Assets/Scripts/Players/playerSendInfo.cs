@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class playerSendInfo : MonoBehaviour
+public class playerSendInfo : Photon.MonoBehaviour
 {
     void Start()
     {
@@ -11,6 +11,12 @@ public class playerSendInfo : MonoBehaviour
 
     void Update()
     {
+        //isMine = the current client only
+        if( photonView.isMine == false && PhotonNetwork.connected == true)
+        {
+            return;
+        }
+
         bool RMB = Input.GetMouseButtonDown(1);
 
         if (RMB)
