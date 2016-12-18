@@ -19,6 +19,9 @@ https://docs.unity3d.com/Manual/ExecutionOrder.html
 ### Sounds, Music
 
 ### Prefabs - Spells, Cards
+-Test Projectile Damage and Area Damage
+
+-Make other Component Effects
 
 ### Prefabs - Players
 
