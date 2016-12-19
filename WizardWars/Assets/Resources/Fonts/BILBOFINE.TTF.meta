@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: fb55d1f14da167842b70d64d7e7dd445
+timeCreated: 1482092196
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Bilbo-hand-fine
+  fontNames:
+  - Bilbo-hand-fine
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
