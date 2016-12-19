@@ -64,17 +64,21 @@ public class TestDamageable : MonoBehaviour, IDamageable, IHealable, IControllab
         }
     }
 
-    public void ApplyStatus(GameObject status, int from)
+    public void ApplyStatus(GameObject status, int from, uint spell)
     {
         Debug.Log("Got status: " + status.GetComponent<Status>()._name);
         status.GetComponent<Status>()._targetPlayer = _number;
+        status.GetComponent<Status>()._originPlayer = from;
+        status.GetComponent<Status>()._originSpell = spell;
         _statuses.Add(status);
-        _statuses[_statuses.Count - 1].GetComponent<Status>().DoEffect(_number, from);
+        _statuses[_statuses.Count - 1].GetComponent<Status>().DoEffect();
+
     }
 
     public void Move(Vector3 force)
     {
         Debug.Log("Adding Force: " + force);
+        _rigidbody.velocity *= 0;
         _rigidbody.AddForce(force);
     }
 }

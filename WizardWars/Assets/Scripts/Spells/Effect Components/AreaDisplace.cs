@@ -69,8 +69,8 @@ public class AreaDisplace : Displace {
                 ApplyDisplacement(target);
             }
 
-            _timer += 1f;
-            yield return new WaitForSeconds(1);
+            _timer += _timeBetweenTicks;
+            yield return new WaitForSeconds(_timeBetweenTicks);
         }
         _runPersist = false;
         _donePersist = true;

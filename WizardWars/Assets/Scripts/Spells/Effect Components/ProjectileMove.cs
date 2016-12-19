@@ -8,16 +8,14 @@ public class ProjectileMove : Effect {
     public GameObject _signalPrefab;
 
     public Transform _originPosition;
-    public Transform _targetPosition;
-    int _targetNumber;
 
     public float _speed;
-    public Vector3 _direction;
     public float _range;
 
     public uint _signal;
 
-    public bool _disperseOnContact;
+    public bool _disperseOnContact; //Stop at first valid target hit
+    public bool _disperseOnRange; //Stop at max range
 
     public bool _collidedWithValid = false;
     public bool _collidedWithTarget = false;
@@ -30,10 +28,18 @@ public class ProjectileMove : Effect {
     {
         get
         {
-            Debug.Log("Origin position: " + _originPosition.position);
-            Debug.Log("Current position: " + transform.position);
-            Debug.Log("Distance Traveled: " + Vector3.Distance(_originPosition.position, transform.position));
+            //Debug.Log("Origin position: " + _originPosition.position);
+            //Debug.Log("Current position: " + transform.position);
+            //Debug.Log("Distance Traveled: " + Vector3.Distance(_originPosition.position, transform.position));
             return Vector3.Distance(_originPosition.position, transform.position);
+        }
+    }
+
+    public Vector3 _direction
+    {
+        get
+        {
+            return (_originPosition.position - _targetPosition.position).normalized;
         }
     }
 
@@ -45,7 +51,6 @@ public class ProjectileMove : Effect {
     void OnEnable()
     {
         Initialize();
-        _direction = (_originPosition.position - _targetPosition.position).normalized;
 
         //Create a signal object
         GameObject signal = (GameObject)Instantiate(_signalPrefab, _targetPosition.position, new Quaternion());
@@ -63,11 +68,21 @@ public class ProjectileMove : Effect {
             Stop();
             return;
         }
-        
-		if(_distanceMoved >= _range)
+        else
         {
-            _outOfRange = true;
+            if (_distanceMoved >= _range)
+            {
+                _outOfRange = true;
+            }
+
+            if (_isTargeted)
+            {
+                AcquireTarget();
+                UpdateDirection();
+            }
         }
+        
+
 	}
 
     void OnTriggerEnter(Collider other)
@@ -96,6 +111,21 @@ public class ProjectileMove : Effect {
         _rigidbody.velocity *= 0;
     }
 
+    public void AcquireTarget()
+    {
+        GameObject target = Utilities.Misc.GetPlayerByNumber(_targetNumber);
+        _targetPosition = target.transform;
+    }
+
+    public void UpdateDirection()
+    {
+        // Use new direction
+        Vector3 force = _direction;
+        // Use old speed
+        force *= _rigidbody.velocity.magnitude;
+        _rigidbody.velocity = force * -1;
+    }
+
     public override IEnumerator DoContinuous()
     {
         //Cannot do continuous projectile move
@@ -116,11 +146,11 @@ public class ProjectileMove : Effect {
 
     public override bool Done()
     {
-        if (_outOfRange)
+        if (_disperseOnRange && _outOfRange)
         {
             return true;
         }
-        else if (_disperseOnContact)
+        if (_disperseOnContact)
         {
             if (_isTargeted)
             {

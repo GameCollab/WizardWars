@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileDamage : Damage {
-    public int _targetNumber = 0;
 
     private GameObject _validTarget = null;
 

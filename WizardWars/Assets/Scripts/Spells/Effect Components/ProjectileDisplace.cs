@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileDisplace : Displace {
-    public int _targetNumber = 0;
-
     private GameObject _validTarget = null;
 
     public bool _atTargetPosition = false; //Outside behavior should set this

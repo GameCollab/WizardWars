@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Status : MonoBehaviour, SpellLike {
+public abstract class Status : MonoBehaviour, ISpellLike {
     public string _name;
     public string _description;
     public uint _id;
@@ -18,7 +18,6 @@ public abstract class Status : MonoBehaviour, SpellLike {
 
     public uint _originSpell;
     public int _originPlayer;
-    public int _originObject;
 
     public int _targetPlayer;
 
@@ -29,8 +28,7 @@ public abstract class Status : MonoBehaviour, SpellLike {
     public bool _fromObject;
 
     public abstract void DoInverse();
-    public abstract void DoEffect(int targetNumber, int originNumber);
-    public abstract void DoEffect(Vector3 targetPosition, int originNumber);
+    public abstract void DoEffect();
     public abstract bool Done();
 
 }

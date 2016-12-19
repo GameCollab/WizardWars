@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DirectHeal : Heal {
-    public int _targetNumber;
 
     // Use this for initialization
     void Start () {
@@ -55,9 +54,9 @@ public class DirectHeal : Heal {
             // Run Player's take damage function
             GameObject target = Utilities.Misc.GetTarget(_targetNumber, _type, _casterNumber);
             ApplyHeal(target);
-            _timer += 1f;
+            _timer += _timeBetweenTicks;
             _restore += _restoreChange;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(_timeBetweenTicks);
         }
         _runPersist = false;
         _donePersist = true;

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Effect : MonoBehaviour {
+    public uint _spellID;
 
     public Enums.Spells.Target _type;
 
     public float _duration = 0f;
+    public float _timeBetweenTicks = 1f;
     public float _timer = 0f;
 
     public bool _isProjectile;
@@ -19,6 +21,8 @@ public abstract class Effect : MonoBehaviour {
     public bool _runPersist = false;
 
     public int _casterNumber = 0;
+    public int _targetNumber = 0;
+    public Transform _targetPosition;
 
     public abstract bool Done();
 

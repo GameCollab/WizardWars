@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DirectDisplace : Displace {
-    public int _targetNumber;
 
 	void Start () {
 		

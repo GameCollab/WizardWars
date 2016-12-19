@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DirectDisrupt : Disrupt {
-    public int _targetNumber;
 
 	// Use this for initialization
 	void Start () {

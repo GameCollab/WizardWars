@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DirectDamage : Damage {
-    public int _targetNumber = 0;
-
     // Use this for initialization
     void Start () {
         //Debug.Log("DIRECT DAMAGE: START!");
@@ -66,9 +64,9 @@ public class DirectDamage : Damage {
             //Debug.Log("Target: " + _targetNumber);
             GameObject target = Utilities.Misc.GetTarget(_targetNumber, _type, _casterNumber);
             ApplyDamage(target);
-            _timer += 1f;
+            _timer += _timeBetweenTicks;
             _damage += _damageChange;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(_timeBetweenTicks);
         }
         //Debug.Log("DIRECT DAMAGE: Timer is Done.");
         _runPersist = false;

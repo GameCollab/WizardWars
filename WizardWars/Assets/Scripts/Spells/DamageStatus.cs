@@ -25,16 +25,10 @@ public abstract class DamageStatus : Status {
 		
 	}
 
-    public override void DoEffect(Vector3 targetPosition, int originNumber)
+    public override void DoEffect()
     {
-        //Statuses MUST have a target player.
-        //Do nothing
-    }
-
-    public override void DoEffect(int targetNumber, int originNumber)
-    {
-        _continuousDamageEffect._targetNumber = targetNumber;
-        _continuousDamageEffect._casterNumber = originNumber;
+        _continuousDamageEffect._targetNumber = _targetPlayer;
+        _continuousDamageEffect._casterNumber = _originPlayer;
         _continuousDamageEffect.enabled = true;
     }
 

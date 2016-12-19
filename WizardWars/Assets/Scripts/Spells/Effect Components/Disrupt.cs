@@ -13,7 +13,7 @@ public abstract class Disrupt : Effect {
         if (control != null)
         {
             GameObject copy = (GameObject)Instantiate(_status);
-            control.ApplyStatus(copy, _casterNumber);
+            control.ApplyStatus(copy, _casterNumber, _spellID);
         }
     }
 }

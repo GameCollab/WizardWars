@@ -70,9 +70,9 @@ public class AreaDamage : Damage {
                 ApplyDamage(target);
             }
 
-            _timer += 1f;
+            _timer += _timeBetweenTicks;
             _damage += _damageChange;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(_timeBetweenTicks);
         }
         _runPersist = false;
         _donePersist = true;

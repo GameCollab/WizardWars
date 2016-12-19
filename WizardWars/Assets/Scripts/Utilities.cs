@@ -91,7 +91,15 @@ namespace Utilities
 
         public static bool CheckIfTarget(GameObject other, int targetNumber)
         {
-            return true;
+            TestDamageable td = other.GetComponent<TestDamageable>();
+            if(td == null)
+            {
+                return false;
+            }
+            else
+            {
+                return td._number == targetNumber;
+            }
         }
 
         public static bool CheckValidTarget(GameObject origin, GameObject other, Enums.Spells.Target type)

@@ -13,6 +13,7 @@ public class TestEffectController : MonoBehaviour {
     public ProjectileMove _projectileMove;
     public ProjectileDisrupt _pdisrupt;
     public ProjectileDisplace _pdisplace;
+    public Summon _summon;
 
     public Transform _target;
 
@@ -24,6 +25,7 @@ public class TestEffectController : MonoBehaviour {
     public bool _testProjectileMove;
     public bool _testProjectileDisrupt;
     public bool _testProjectileDisplace;
+    public bool _testSummon;
 	// Use this for initialization
 	void Start () {
         if (_testDirectDamage)
@@ -64,6 +66,10 @@ public class TestEffectController : MonoBehaviour {
         {
             //Debug.Log("Test Effect Controller: Setting Projectile Damage Active");
             _pdisrupt.enabled = true;
+        }
+        if (_testSummon)
+        {
+            _summon.enabled = true;
         }
     }
 

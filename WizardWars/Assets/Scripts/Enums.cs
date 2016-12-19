@@ -88,6 +88,13 @@ namespace Enums
             NOVA,
             DISCRETE_NOVA
         }
+
+        public enum Interrupt
+        {
+            NONE,
+            ANY,
+            SELF
+        }
     }
 
     public static class Statuses

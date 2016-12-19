@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ProjectileDisrupt : Disrupt {
 
-    public int _targetNumber = 0;
 
     private GameObject _validTarget = null;
 
