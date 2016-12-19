@@ -1,29 +1,29 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileDamage : Damage {
+public class ProjectileDisrupt : Disrupt {
+
     public int _targetNumber = 0;
 
     private GameObject _validTarget = null;
 
     public bool _atTargetPosition = false; //Outside behavior should set this
 
-    void Start () { 
+    void Start()
+    {
 
-	}
+    }
 
     void OnEnable()
     {
         Initialize();
     }
-	
-	void OnTriggerEnter(Collider other)
+
+    void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Projectile Damage Collision");
         if (!this.enabled) return;
-        if(Utilities.Effects.IsValidTarget(gameObject, other.gameObject, _targetNumber, _type, _isTargeted))
+        if (Utilities.Effects.IsValidTarget(gameObject, other.gameObject, _targetNumber, _type, _isTargeted))
         {
             _validTarget = other.gameObject;
             DoDiscrete();
@@ -43,7 +43,7 @@ public class ProjectileDamage : Damage {
 
     public override void DoDiscrete()
     {
-        ApplyDamage(_validTarget);
+        ApplyDisruption(_validTarget);
         //_doneDiscrete = true;
     }
 

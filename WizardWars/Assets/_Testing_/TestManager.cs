@@ -7,10 +7,13 @@ public class TestManager : MonoBehaviour {
 
     public static TestManager _manager;
 
+    public GameObject _testStatus;
+
     void Awake()
     {
         if(_manager == null)
         {
+            //Debug.Log("setting manager");
             DontDestroyOnLoad(gameObject);
             _manager = this;
         }
@@ -21,7 +24,11 @@ public class TestManager : MonoBehaviour {
     }
 	// Use this for initialization
 	void Start () {
-        _manager = this;
+        foreach (var player in _players)
+        {
+            player.SetActive(true);
+        }
+        //_testStatus.SetActive(true);
 	}
 	
 	// Update is called once per frame

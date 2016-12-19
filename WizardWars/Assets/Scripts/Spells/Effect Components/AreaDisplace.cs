@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AreaDamage : Damage {
-
+public class AreaDisplace : Displace {
     public Vector3 _castPoint;
 
     public Enums.Spells.Cast _area;
@@ -12,9 +10,10 @@ public class AreaDamage : Damage {
     public float _secondaryAreaValue;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         Initialize();
-	}
+    }
 
     void OnEnable()
     {
@@ -51,7 +50,7 @@ public class AreaDamage : Damage {
         Debug.Log("List length: " + targets.Count);
         foreach (var target in targets)
         {
-            ApplyDamage(target);
+            ApplyDisplacement(target);
         }
 
         _doneDiscrete = true;
@@ -67,11 +66,10 @@ public class AreaDamage : Damage {
             Debug.Log("List length: " + targets.Count);
             foreach (var target in targets)
             {
-                ApplyDamage(target);
+                ApplyDisplacement(target);
             }
 
             _timer += 1f;
-            _damage += _damageChange;
             yield return new WaitForSeconds(1);
         }
         _runPersist = false;

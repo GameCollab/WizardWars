@@ -13,6 +13,7 @@ namespace Constants
     public static class Tags
     {
         public const string PLAYER_TAG = "Players";
+        public const string SIGNAL_TAG = "Signals";
     }
 }
 

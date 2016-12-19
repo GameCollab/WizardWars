@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AreaDamage : Damage {
+public class AreaDisrupt : Disrupt {
 
     public Vector3 _castPoint;
 
@@ -12,24 +11,22 @@ public class AreaDamage : Damage {
     public float _secondaryAreaValue;
 
     // Use this for initialization
-    void Start () {
-        Initialize();
-	}
+    void Start()
+    {
+        
+    }
 
     void OnEnable()
     {
         Initialize();
-
         if (_isPersistent && !_donePersist && !_runPersist)
         {
-            Debug.Log("Do Continuous");
             _timer = 0f;
             _runPersist = true;
             StartCoroutine(DoContinuous());
         }
         else if (!_isPersistent && !_doneDiscrete)
         {
-            Debug.Log("Do Discrete");
             DoDiscrete();
         }
     }
@@ -51,7 +48,7 @@ public class AreaDamage : Damage {
         Debug.Log("List length: " + targets.Count);
         foreach (var target in targets)
         {
-            ApplyDamage(target);
+            ApplyDisruption(target);
         }
 
         _doneDiscrete = true;
@@ -67,11 +64,10 @@ public class AreaDamage : Damage {
             Debug.Log("List length: " + targets.Count);
             foreach (var target in targets)
             {
-                ApplyDamage(target);
+                ApplyDisruption(target);
             }
 
             _timer += 1f;
-            _damage += _damageChange;
             yield return new WaitForSeconds(1);
         }
         _runPersist = false;

@@ -65,7 +65,8 @@ namespace Enums
             NONE,
             NOT_SELF,
             ANY,
-            SELF
+            SELF,
+            SIGNAL
         }
 
         public enum Shot

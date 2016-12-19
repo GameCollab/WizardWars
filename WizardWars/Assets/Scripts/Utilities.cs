@@ -31,8 +31,24 @@ namespace Utilities
 
         public static GameObject GetPlayerByNumber(int number)
         {
-            Debug.Log("Number: " + number);
+            //Debug.Log("Number: " + number);
+            //Debug.Log(TestManager._manager);
             return TestManager._manager._players[number];
+        }
+
+        public static GameObject GetTarget(int number, Enums.Spells.Target type, int caster)
+        {
+            //Debug.Log(number + ", " + caster + ", " + type);
+            GameObject target;
+            if (type == Enums.Spells.Target.SELF && false)
+            {
+                target = Utilities.Misc.GetPlayerByNumber(caster);
+            }
+            else
+            {
+                target = Utilities.Misc.GetPlayerByNumber(number);
+            }
+            return target;
         }
     }
 
@@ -47,13 +63,21 @@ namespace Utilities
         {
             return obj.GetComponent(typeof(IHealable)) as IHealable;
         }
+
+        public static IControllable GetControllable(GameObject obj)
+        {
+            return obj.GetComponent(typeof(IControllable)) as IControllable;
+        }
+
+        public static IMovable GetMovable(GameObject obj)
+        {
+            return obj.GetComponent(typeof(IMovable)) as IMovable;
+        }
     }
 
     public static class Effects
     {
-
-
-        public static bool IsValidTarget(GameObject other, int targetNumber, Enums.Spells.Target type, bool targeted)
+        public static bool IsValidTarget(GameObject origin, GameObject other, int targetNumber, Enums.Spells.Target type, bool targeted)
         {
             if (targeted)
             {
@@ -61,7 +85,7 @@ namespace Utilities
             }
             else
             {
-                return CheckValidTarget(other, type);
+                return CheckValidTarget(origin, other, type);
             }
         }
 
@@ -70,13 +94,22 @@ namespace Utilities
             return true;
         }
 
-        public static bool CheckValidTarget(GameObject other, Enums.Spells.Target type)
+        public static bool CheckValidTarget(GameObject origin, GameObject other, Enums.Spells.Target type)
         {
+            //Debug.Log("Checking non-targeted target of type " + type);
+            //Debug.Log("Origin: " + origin);
+            //Debug.Log("Other: " + other);
             switch (type)
             {
                 case Enums.Spells.Target.ANY: return other.CompareTag(Constants.Tags.PLAYER_TAG);
                 case Enums.Spells.Target.NOT_SELF: return other.CompareTag(Constants.Tags.PLAYER_TAG);//&& other.GetComponent<Player...>().getNumber()... != _casterNumber;
                 case Enums.Spells.Target.SELF: return true; //return other.GetComponent<Player...>().getNumber()... == _casterNumber;
+                case Enums.Spells.Target.SIGNAL:
+                    Signal source = other.GetComponent<Signal>();
+                    ProjectileMove moving = origin.GetComponent<ProjectileMove>();
+                    //Debug.Log("Checking signal + source: " + source + "," + moving);
+                    if (source == null || moving == null) return false;
+                    return source._id == moving._signal;
                 default:
                     Debug.Log("Bad Target Type!");
                     break;

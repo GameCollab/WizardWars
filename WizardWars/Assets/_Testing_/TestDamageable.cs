@@ -3,19 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestDamageable : MonoBehaviour, IDamageable, IHealable {
+public class TestDamageable : MonoBehaviour, IDamageable, IHealable, IControllable, IMovable {
+    public Rigidbody _rigidbody;
     public float _health;
     public bool _isDead;
 
     public int _number;
 
+    public List<GameObject> _statuses;
     // Use this for initialization
     void Start () {
+        _rigidbody = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		for(int i = 0; i < _statuses.Count; i++)
+        {
+            if(_statuses[i].GetComponent<Status>().Done())
+            {
+                _statuses[i].GetComponent<Status>().DoInverse();
+                _statuses.RemoveAt(i);
+                i--;
+            }
+        }
 	}
 
     public void Die()
@@ -51,5 +62,19 @@ public class TestDamageable : MonoBehaviour, IDamageable, IHealable {
             _health += amount;
             Debug.Log("New Health: " + _health);
         }
+    }
+
+    public void ApplyStatus(GameObject status, int from)
+    {
+        Debug.Log("Got status: " + status.GetComponent<Status>()._name);
+        status.GetComponent<Status>()._targetPlayer = _number;
+        _statuses.Add(status);
+        _statuses[_statuses.Count - 1].GetComponent<Status>().DoEffect(_number, from);
+    }
+
+    public void Move(Vector3 force)
+    {
+        Debug.Log("Adding Force: " + force);
+        _rigidbody.AddForce(force);
     }
 }

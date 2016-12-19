@@ -14,54 +14,22 @@ public class DirectDamage : Damage {
 
     void OnEnable()
     {
-        Debug.Log("DIRECT DAMAGE: ON ENABLE!");
+        //Debug.Log("DIRECT DAMAGE: ON ENABLE!");
         Initialize();
 
         if (_isPersistent && !_donePersist && !_runPersist)
         {
-            Debug.Log("DIRECT DAMAGE: Dealing Continuous Damage");
+            //Debug.Log("DIRECT DAMAGE: Dealing Continuous Damage");
             _timer = 0f;
             _runPersist = true;
-            StartCoroutine(DealContinuousDamage());
-            Debug.Log("DIRECT DAMAGE: Control out of Coroutine.");
+            StartCoroutine(DoContinuous());
+            //Debug.Log("DIRECT DAMAGE: Control out of Coroutine.");
         }
         else if(!_isPersistent && !_doneDiscrete)
         {
-            Debug.Log("DIRECT DAMAGE: Dealing Discete Damage");
-            DealDamage();
+            //Debug.Log("DIRECT DAMAGE: Dealing Discete Damage");
+            DoDiscrete();
         }
-    }
-
-    public override void DealDamage()
-    {
-        // Get player info via targetNumber
-        // Run Player's take damage function
-        //GameObject target = new GameObject();
-        GameObject target = Utilities.Misc.GetPlayerByNumber(_targetNumber);
-        ApplyDamage(target);
-
-        _doneDiscrete = true;
-    }
-
-    public override IEnumerator DealContinuousDamage()
-    {
-        while (!Utilities.Misc.IsTimerDone(_timer, _duration))
-        {
-            Debug.Log("DIRECT DAMAGE: Timer is Not Done.");
-            Debug.Log("DIRECT DAMAGE: Timer: " + _timer);
-            // Get player info via targetNumber
-            // Run Player's take damage function
-            GameObject target = Utilities.Misc.GetPlayerByNumber(_targetNumber);
-            ApplyDamage(target);
-            _timer += 1f;
-            _damage += _damageChange;
-            yield return new WaitForSeconds(1);
-        }
-        Debug.Log("DIRECT DAMAGE: Timer is Done.");
-        _runPersist = false;
-        _donePersist = true;
-        Debug.Log("DIRECT DAMAGE: Done with Coroutine");
-        yield break;
     }
 
     public override bool Done()
@@ -71,8 +39,41 @@ public class DirectDamage : Damage {
 
     public override void Initialize()
     {
-        Debug.Log("DIRECT DAMAGE: Initialized!");
+        //Debug.Log("DIRECT DAMAGE: Initialized!");
         _isTargeted = true;
         _isProjectile = false;
+    }
+
+    public override void DoDiscrete()
+    {
+        // Get player info via targetNumber
+        // Run Player's take damage function
+        //GameObject target = new GameObject();
+        GameObject target = Utilities.Misc.GetTarget(_targetNumber, _type, _casterNumber);
+        ApplyDamage(target);
+
+        _doneDiscrete = true;
+    }
+
+    public override IEnumerator DoContinuous()
+    {
+        while (!Utilities.Misc.IsTimerDone(_timer, _duration))
+        {
+            //Debug.Log("DIRECT DAMAGE: Timer is Not Done.");
+            //Debug.Log("DIRECT DAMAGE: Timer: " + _timer);
+            // Get player info via targetNumber
+            // Run Player's take damage function
+            //Debug.Log("Target: " + _targetNumber);
+            GameObject target = Utilities.Misc.GetTarget(_targetNumber, _type, _casterNumber);
+            ApplyDamage(target);
+            _timer += 1f;
+            _damage += _damageChange;
+            yield return new WaitForSeconds(1);
+        }
+        //Debug.Log("DIRECT DAMAGE: Timer is Done.");
+        _runPersist = false;
+        _donePersist = true;
+        //Debug.Log("DIRECT DAMAGE: Done with Coroutine");
+        yield break;
     }
 }

@@ -1,31 +1,32 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DirectHeal : Heal {
+public class DirectDisplace : Displace {
     public int _targetNumber;
 
-    // Use this for initialization
-    void Start () {
+	void Start () {
 		
 	}
-	
-	void OnEnable()
+
+    void OnEnable()
     {
+        //Debug.Log("DIRECT DAMAGE: ON ENABLE!");
         Initialize();
 
         if (_isPersistent && !_donePersist && !_runPersist)
         {
+            //Debug.Log("DIRECT DAMAGE: Dealing Continuous Damage");
             _timer = 0f;
             _runPersist = true;
             StartCoroutine(DoContinuous());
+            //Debug.Log("DIRECT DAMAGE: Control out of Coroutine.");
         }
         else if (!_isPersistent && !_doneDiscrete)
         {
+            //Debug.Log("DIRECT DAMAGE: Dealing Discete Damage");
             DoDiscrete();
         }
-
     }
 
     public override bool Done()
@@ -35,32 +36,26 @@ public class DirectHeal : Heal {
 
     public override void Initialize()
     {
+        //Debug.Log("DIRECT DAMAGE: Initialized!");
         _isTargeted = true;
         _isProjectile = false;
+        _isPersistent = false;
     }
 
     public override void DoDiscrete()
     {
+        // Get player info via targetNumber
+        // Run Player's take damage function
+        //GameObject target = new GameObject();
         GameObject target = Utilities.Misc.GetTarget(_targetNumber, _type, _casterNumber);
-        ApplyHeal(target);
+        ApplyDisplacement(target);
 
         _doneDiscrete = true;
     }
 
     public override IEnumerator DoContinuous()
     {
-        while (!Utilities.Misc.IsTimerDone(_timer, _duration))
-        {
-            // Get player info via targetNumber
-            // Run Player's take damage function
-            GameObject target = Utilities.Misc.GetTarget(_targetNumber, _type, _casterNumber);
-            ApplyHeal(target);
-            _timer += 1f;
-            _restore += _restoreChange;
-            yield return new WaitForSeconds(1);
-        }
-        _runPersist = false;
-        _donePersist = true;
+        //Continuous Displacement only occurs in Area
         yield break;
     }
 }
