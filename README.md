@@ -19,9 +19,29 @@ https://docs.unity3d.com/Manual/ExecutionOrder.html
 ### Sounds, Music
 
 ### Prefabs - Spells, Cards
--Test Projectile Damage and Area Damage
+-Make Heal Effect
 
--Make other Component Effects
+-Test Heal Effect
+
+-Make Disrupt Effect
+
+-Test Disrupt Effect with dummy status.
+
+-Make Displace EFfect
+
+-Test Displace Effect
+
+-Make Projectile Move
+
+-Make Finale Effect
+
+-Make Summon Effect
+
+-Make Channel Effect
+
+-Make Disable Effect
+
+-Make Modify, Change Effect
 
 ### Prefabs - Players
 
