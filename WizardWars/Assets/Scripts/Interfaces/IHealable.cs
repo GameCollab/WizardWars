@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IHealable<T>
+public interface IHealable
 {
-    void heal<T>(T amount);
+    void Heal(float amount);
 }
