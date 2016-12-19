@@ -113,7 +113,7 @@ public class ProjectileMove : Effect {
 
     public void AcquireTarget()
     {
-        GameObject target = Utilities.Misc.GetPlayerByNumber(_targetNumber);
+        GameObject target = Utilities.ManagerAccess.GetPlayerByNumber(_targetNumber);
         _targetPosition = target.transform;
     }
 

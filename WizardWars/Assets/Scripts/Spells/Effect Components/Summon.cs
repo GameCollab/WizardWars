@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Summon : Effect {
-    public GameObject _whatToSummon;
+    public uint _whatToSummon;
 
     public Transform _summonPoint;
 
@@ -45,8 +45,8 @@ public class Summon : Effect {
 
     public override void DoDiscrete()
     {
-        
-        _summonedObject = (GameObject)Instantiate(_whatToSummon, _summonPoint.position, new Quaternion());
+        GameObject summonThis = Utilities.ManagerAccess.GetObjectById(_whatToSummon);
+        _summonedObject = (GameObject)Instantiate(summonThis, _summonPoint.position, new Quaternion());
         _doneDiscrete = true;
     }
 

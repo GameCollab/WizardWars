@@ -22,6 +22,45 @@ namespace Utilities
         }
     }
 
+    public static class ManagerAccess
+    {
+        public static GameObject GetPlayerByNumber(int number)
+        {
+            //Debug.Log("Number: " + number);
+            //Debug.Log(TestManager._manager);
+            return GlobalManager.MANAGER._players[number];
+        }
+
+        public static GameObject GetStatusById(uint id)
+        {
+            return GlobalManager.MANAGER._statusDatabase[id];
+        }
+
+        public static GameObject GetObjectById(uint id)
+        {
+            return GlobalManager.MANAGER._objectDatabase[id];
+            /*
+            if(type == Enums.Objects.Type.PROJECTILE)
+            {
+                return GlobalManager.MANAGER._projectileMasterList[id];
+            }
+            else if(type == Enums.Objects.Type.STATIONARY)
+            {
+                return GlobalManager.MANAGER._stationaryMasterList[id];
+            }
+            else
+            {
+                return null;
+            }
+            */
+        }
+
+        public static GameObject GetCardById(uint id)
+        {
+            return GlobalManager.MANAGER._cardDatabase[id];
+        }
+    }
+
     public static class Misc
     {
         public static bool IsTimerDone(float timer, float duration)
@@ -29,12 +68,6 @@ namespace Utilities
             return timer >= duration;
         }
 
-        public static GameObject GetPlayerByNumber(int number)
-        {
-            //Debug.Log("Number: " + number);
-            //Debug.Log(TestManager._manager);
-            return TestManager._manager._players[number];
-        }
 
         public static GameObject GetTarget(int number, Enums.Spells.Target type, int caster)
         {
@@ -42,14 +75,16 @@ namespace Utilities
             GameObject target;
             if (type == Enums.Spells.Target.SELF && false)
             {
-                target = Utilities.Misc.GetPlayerByNumber(caster);
+                target = Utilities.ManagerAccess.GetPlayerByNumber(caster);
             }
             else
             {
-                target = Utilities.Misc.GetPlayerByNumber(number);
+                target = Utilities.ManagerAccess.GetPlayerByNumber(number);
             }
             return target;
         }
+
+
     }
 
     public static class Interfaces

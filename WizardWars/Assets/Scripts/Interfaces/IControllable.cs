@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface IControllable {
-    void ApplyStatus(GameObject status, int from, uint spell);
+    void ApplyStatus(uint status, int from, uint spell);
 }
