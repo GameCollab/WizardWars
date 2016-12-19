@@ -1,74 +1,50 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-/* Store Card Data */
-/* Has Spell Effects */
-public abstract class Card : IComparable<Card>
+public abstract class Card : MonoBehaviour, ISpellLike, IComparable<Card>
 {
-    /* Card General Data */
     public string _name;
-    public uint _id;
     public string _description;
+    public uint _id;
 
-    /* Card Identifiers */
-    public Constants.CardType _type;
-    public Constants.CardClass _class;
-    public Constants.CardRarity _rarity;
+    public Enums.Cards.Type _type;
+    public Enums.Cards.Element _element;
+    public Enums.Cards.Rarity _rarity;
 
-    /* Card - Spell */
-    public Constants.SpellType _spellType;
-    public Constants.SpellTarget _target;
-    public Constants.SpellCast _cast;
-    public int _castValue;
+    public Enums.Spells.Target _target;
+    public Enums.Spells.Type _supertype;
+    public Enums.Spells.SubType _subtype;
+    public Enums.Spells.Cast _cast;
+    public Enums.Spells.Shot _shot;
 
-    /* Card Values */
+    public float _castSize;
+    public float _castSecondValue;
+
     public float _damage;
     public float _knockback;
+    public float _cooldown;
     public float _duration;
     public float _channel;
     public float _range;
-    public float _castRange;
-    public float _missileSpeed;
-    public float _cooldown;
+    public float _speed;
+    public Enums.Cards.Tag[] _tags;
 
-    public Constants.Tag[] _tags;
+    public Dictionary<uint, bool> _modifiers;
 
-
-    public Card(string name, uint id, string description, Constants.CardType type, Constants.CardClass cl, Constants.CardRarity rarity, Constants.SpellType spellType, Constants.SpellTarget target, Constants.SpellCast cast, int castValue, float damage, float knockback, float duration, float channel, float range, float castRange, float missileSpeed, float cooldown, Constants.Tag[] tags)
+    public string _display
     {
-        _name = name;
-        _id = id;
-        _description = description;
-        _type = type;
-        _class = cl;
-        _rarity = rarity;
-        _spellType = spellType;
-        _target = target;
-        _cast = cast;
-        _castValue = castValue;
-        _damage = damage;
-        _knockback = knockback;
-        _duration = duration;
-        _channel = channel;
-        _range = range;
-        _castRange = castRange;
-        _missileSpeed = missileSpeed;
-        _cooldown = cooldown;
-        _tags = tags;
-}
-
-    public string toString()
-    {
-        return null; //Create a string that summarizes the card
+        get
+        {
+            return null; //DEpends on how the card is displayed
+        }
     }
+
+    public abstract void DoEffect();
 
     public int CompareTo(Card other)
     {
         return _id.CompareTo(other._id);
     }
-
-    public abstract void CastSpell(GameObject user, GameObject target);
-    public abstract bool UndoEffects(GameObject target);
-
 }

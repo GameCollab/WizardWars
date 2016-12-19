@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IHealable
+public interface ISpellLike
 {
-    void Heal(float amount);
+    void DoEffect();
 }
