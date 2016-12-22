@@ -137,6 +137,17 @@ namespace Enums
         }
     }
 
+    public static class Visuals
+    {
+        public enum State
+        {
+            NONE,
+            IDLE,
+            ACTIVE,
+            DEATH
+        }
+    }
+
     public static class Players
     {
         public enum Attribute
