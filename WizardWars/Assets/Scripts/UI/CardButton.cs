@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class deckMenu : MonoBehaviour {
+public class CardButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,10 +13,4 @@ public class deckMenu : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    //load decks from player
-    private void loadDecks ()
-    {
-
-    }
 }
