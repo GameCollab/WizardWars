@@ -4,5 +4,6 @@ using UnityEngine;
 //For things that need to move via force
 public interface IMovable
 {
-    void Move(Vector3 force);
+    void Push(Vector3 force);
+    void Teleport(Vector3 position);
 }

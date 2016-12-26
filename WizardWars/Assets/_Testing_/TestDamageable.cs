@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 public class TestDamageable : MonoBehaviour, IDamageable, IHealable, IControllable, IMovable {
     public Rigidbody _rigidbody;
     public float _health;
@@ -72,7 +73,7 @@ public class TestDamageable : MonoBehaviour, IDamageable, IHealable, IControllab
         copy.GetComponent<Status>()._originPlayer = from;
         copy.GetComponent<Status>()._originSpell = spell;
         _statuses.Add(copy);
-        _statuses[_statuses.Count - 1].GetComponent<Status>().DoEffect();
+        _statuses[_statuses.Count - 1].GetComponent<Status>().DoEffect(_number, transform, transform, _number);
 
     }
 
@@ -83,3 +84,4 @@ public class TestDamageable : MonoBehaviour, IDamageable, IHealable, IControllab
         _rigidbody.AddForce(force);
     }
 }
+*/

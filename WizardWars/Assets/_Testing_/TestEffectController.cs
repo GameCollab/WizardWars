@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class TestEffectController : MonoBehaviour {
     public GameObject _manager;
 
@@ -80,3 +80,4 @@ public class TestEffectController : MonoBehaviour {
         //transform.Translate(newpos);
     }
 }
+*/
