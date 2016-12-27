@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerMoveVisual : MonoBehaviour {
+public class playerMoveVisual : Photon.MonoBehaviour {
 
     Vector3 newposition;
     public float speed;
@@ -13,6 +13,12 @@ public class playerMoveVisual : MonoBehaviour {
     void Start()
     {
         newposition = this.transform.position;
+
+        if(photonView.isMine)
+        {
+            this.gameObject.GetComponent<CameraManager>().OnStartFollowing();
+        }
+
     }
 
 
