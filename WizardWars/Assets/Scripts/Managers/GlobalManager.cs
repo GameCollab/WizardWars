@@ -26,8 +26,8 @@ public class GlobalManager : MonoBehaviour, IGlobal {
 
     void Start ()
     {
-		
-	}
+
+    }
 	
 	void Update ()
     {
