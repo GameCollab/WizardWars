@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Constants;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class deckMenu : MonoBehaviour
@@ -33,10 +32,10 @@ public class deckMenu : MonoBehaviour
         {
             deckButton[i] = Instantiate(deckPrefab, deckSlots[i].position, deckSlots[i].rotation, deckSlots[i]);
             deckButton[i].GetComponentInChildren<Text>().text = account.getDeck(i).getName();
-            Debug.Log(deckButton[i].GetComponent<Button>());
+            Button button = deckButton[i].GetComponent<Button>();
             deckButton[i].GetComponent<Button>().onClick.AddListener(() =>
             {
-                deckButtonClick();
+                deckButtonClick(button);
             });
         }
     }
@@ -61,15 +60,15 @@ public class deckMenu : MonoBehaviour
     /*
         Displays cards and creates Card Buttons in right menu page
     */
-    public void deckButtonClick()
+    public void deckButtonClick(Button button)
     {
         //if cards are being displayed, delete cards
         if (deckUp)
         {
             deleteCardButtons();
         }
-        Debug.Log(EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text);
-        Deck d = account.getDeck(EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text);
+        Debug.Log(button);
+        Deck d = account.getDeck(button.GetComponentInChildren<Text>().text);
 
         for (int i = 0; i < Max.DECK_SIZE; i++)
         {
@@ -85,7 +84,6 @@ public class deckMenu : MonoBehaviour
             }
         }
         deckUp = true;
-        
     }
 
     /*
