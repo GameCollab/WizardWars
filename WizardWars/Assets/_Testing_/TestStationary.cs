@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 public class TestStationary : Stationary {
     public AreaDisplace _displaceEffect;
 
@@ -11,7 +12,7 @@ public class TestStationary : Stationary {
     // Use this for initialization
     void Start () {
         Initialize();
-        DoEffect();
+        DoEffect(-1, transform, transform);
 	}
 	
 	// Update is called once per frame
@@ -26,7 +27,7 @@ public class TestStationary : Stationary {
         }
 	}
 
-    public override void DoEffect()
+    public override void DoEffect(int targetNumber, Transform targetPosition, Transform castPosition)
     {
         //Ignore targetPosition. 
         //This Test Stationary will apply a small force to all Players around it towards it continuously.
@@ -35,3 +36,4 @@ public class TestStationary : Stationary {
     }
 
 }
+*/

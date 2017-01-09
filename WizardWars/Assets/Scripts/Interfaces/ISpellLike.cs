@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface ISpellLike
 {
-    void DoEffect();
+    void CastSpell(int targetNumber, Transform targetPosition, Transform castPosition, int casterNumber);
+    IEnumerator DoEffect(int targetNumber, Transform targetPosition, Transform castPosition, int casterNumber);
 }

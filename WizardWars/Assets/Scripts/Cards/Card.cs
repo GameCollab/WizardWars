@@ -12,15 +12,12 @@ public abstract class Card : MonoBehaviour, ISpellLike, IComparable<Card>
     public Enums.Cards.Type _type;
     public Enums.Cards.Element _element;
     public Enums.Cards.Rarity _rarity;
-
-    public Enums.Spells.Target _target;
-    public Enums.Spells.Type _supertype;
-    public Enums.Spells.SubType _subtype;
-    public Enums.Spells.Cast _cast;
-    public Enums.Spells.Shot _shot;
+    public Enums.Cards.Target _target;
+    public Enums.Cards.Cast _cast;
+    public Enums.Cards.Shot _shot;
 
     public float _castSize;
-    public float _castSecondValue;
+    public float _arrowNumber;
 
     public float _damage;
     public float _knockback;
@@ -29,8 +26,8 @@ public abstract class Card : MonoBehaviour, ISpellLike, IComparable<Card>
     public float _channel;
     public float _range;
     public float _speed;
-    public Enums.Cards.Tag[] _tags;
 
+    public List<Enums.Cards.Tag> _tags;
     public Dictionary<uint, bool> _modifiers;
 
     public string _display
@@ -41,7 +38,12 @@ public abstract class Card : MonoBehaviour, ISpellLike, IComparable<Card>
         }
     }
 
-    public abstract void DoEffect();
+    public void CastSpell(int targetNumber, Transform targetPosition, Transform castPosition, int casterNumber)
+    {
+        StartCoroutine(DoEffect(targetNumber, targetPosition, castPosition, casterNumber));
+    }
+
+    public abstract IEnumerator DoEffect(int targetNumber, Transform targetPosition, Transform castPosition, int casterNumber);
 
     public int CompareTo(Card other)
     {

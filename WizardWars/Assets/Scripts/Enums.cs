@@ -39,26 +39,6 @@ namespace Enums
             PROJECTILE,
             AOE
         }
-    }
-
-    public static class Spells
-    {
-        public enum Type
-        {
-            NONE,
-            ACTIVE,
-            PASSIVE
-        }
-
-        public enum SubType
-        {
-            NONE,
-            PROJECTILE,
-            OBJECT,
-            DIRECT,
-            MODIFIER,
-            BUFF
-        }
 
         public enum Target
         {
@@ -94,6 +74,15 @@ namespace Enums
             NONE,
             ANY,
             SELF
+        }
+
+        public enum Ability
+        {
+            NONE,
+            DAMAGE,
+            HEAL,
+            DISRUPT,
+            DISPLACE
         }
     }
 
@@ -134,6 +123,17 @@ namespace Enums
             NONE,
             PROJECTILE,
             STATIONARY
+        }
+    }
+
+    public static class Visuals
+    {
+        public enum State
+        {
+            NONE,
+            IDLE,
+            ACTIVE,
+            DEATH
         }
     }
 
